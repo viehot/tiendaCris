@@ -5,11 +5,13 @@
  */
 package Persistencia;
 
+import Entity.Producto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,6 +52,31 @@ public class Conexion {
             System.out.println("Desconectado");
         } catch (Exception e) {
             System.err.println("Error de desconexion");
+            e.printStackTrace();
+        }
+    }
+    
+    public void consultarBase() {
+        try {
+            String pro = "SELECT * FROM producto";
+            sent = con.createStatement();
+            res = sent.executeQuery(pro);
+            ArrayList<Producto> pros = new ArrayList();
+            while (res.next()) {
+                Producto p = new Producto();
+                p.setId(res.getInt(1));
+                p.setNombre(res.getString(2));
+                p.setStock(res.getInt(3));
+                p.setPrecio(res.getDouble(4));
+                p.setDescripcion(res.getString(5));
+                p.setId_marca(res.getInt(6));
+                pros.add(p);
+            }
+            
+            pros.forEach(System.out::println);
+            
+        } catch (Exception e) {
+            System.out.println("Error de consulta");
             e.printStackTrace();
         }
     }
