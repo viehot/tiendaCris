@@ -1,5 +1,6 @@
 package main;
 
+import Persistencia.ConProducto;
 import Persistencia.Conexion;
 
 /*
@@ -18,17 +19,9 @@ public class tiendacris {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Conexion con = new Conexion();
+        ConProducto p = new ConProducto();
         
-        con.coneccion();
-        
-        con.consultarBase();
-        
-        con.eliminarModificarCrear();
-        
-        con.consultarBase();
-        
-        con.desconexion();
+        p.viewProducto(p.ListarProducto());
     }
     
 }
