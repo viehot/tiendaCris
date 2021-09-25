@@ -85,4 +85,24 @@ public class ConProducto extends Conexion {
         desconexion();
     }
     
+    public void elimProd (){
+        
+    }
+    
+    public String searchPorNombre (String nombre){
+        String sql = "SELECT id FROM producto WHERE nombre ="+nombre+"";
+        return sql;
+    }
+    
+    public void searchProducto (String sql){
+        try {
+            consultarBase(sql);
+            if (res != null) {
+             res.next();
+             
+            }
+        } catch (Exception e) {
+        }
+        
+    }
 }
