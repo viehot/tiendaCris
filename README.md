@@ -12,7 +12,13 @@ El objetivo es crear un CRUD simple de productos contados con dos tablas marca y
 git clone https://github.com/viehot/tiendaCris.git
 ```
 
-2. Crear una Rama
+2.Posicionarce en la carpeta
+
+```
+cd tiendaCris
+```
+
+3. Crear una Rama
 
 ```
 git checkout -b nombreDeLaRama
