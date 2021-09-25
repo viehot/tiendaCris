@@ -24,6 +24,8 @@ public class tiendacris {
         p.viewProducto(p.ListarProducto());
         p.newProd(p.crearProducto());
         p.viewProducto(p.ListarProducto());
+        p.elimProd(p.searchProducto(p.searchPorNombre(p.wrNombre())));
+        p.viewProducto(p.ListarProducto());
     }
     
 }
