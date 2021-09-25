@@ -5,28 +5,28 @@
  */
 package Persistencia;
 
-import Entity.Producto;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+
 
 /**
  *
  * @author piriv
  */
-public class Conexion {
-    private Connection con = null;
-    private ResultSet res = null;
-    private Statement sent = null;
+public abstract class Conexion {
+    protected Connection con = null;
+    protected ResultSet res = null;
+    protected Statement sent = null;
     
     private final String user = "root";
     private final String password = "root";
     private String database = "negocioCris";
     
-    public void coneccion(){
+    protected void coneccion(){
         try {
             String urlBaseDeDatos = "jdbc:mysql://localhost:3306/" + database + "?useSSL=false";
             con = DriverManager.getConnection(urlBaseDeDatos, user, password);
@@ -38,7 +38,7 @@ public class Conexion {
         
     }
     
-    public void desconexion(){
+    protected void desconexion(){
         try {
             if (res != null) {
                 res.close();
@@ -56,38 +56,25 @@ public class Conexion {
         }
     }
     
-    public void consultarBase() {
+    protected void consultarBase(String sql) {
         try {
-            String pro = "SELECT * FROM producto";
+            coneccion();
             sent = con.createStatement();
-            res = sent.executeQuery(pro);
-            ArrayList<Producto> pros = new ArrayList();
-            while (res.next()) {
-                Producto p = new Producto();
-                p.setId(res.getInt(1));
-                p.setNombre(res.getString(2));
-                p.setStock(res.getInt(3));
-                p.setPrecio(res.getDouble(4));
-                p.setDescripcion(res.getString(5));
-                p.setId_marca(res.getInt(6));
-                pros.add(p);
-            }
-            
-            pros.forEach(System.out::println);
-            
+            res = sent.executeQuery(sql);            
         } catch (Exception e) {
             System.out.println("Error de consulta");
             e.printStackTrace();
         }
     }
     
-    public void eliminarModificarCrear(){
+    protected void eliminarModificarCrear(String sql){
         try {
-            String marca = "UPDATE producto SET nombre = 'sorny' WHERE id = 2";
+            coneccion();
             sent = con.createStatement();
-            sent.executeUpdate(marca);
+            sent.executeUpdate(sql);
         } catch (Exception e) {
             System.out.println("Error en el UPDATE");
+            e.printStackTrace();
         }
     }
 }
