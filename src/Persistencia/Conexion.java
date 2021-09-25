@@ -80,5 +80,15 @@ public class Conexion {
             e.printStackTrace();
         }
     }
+    
+    public void eliminarModificarCrear(){
+        try {
+            String marca = "UPDATE producto SET nombre = 'sorny' WHERE id = 2";
+            sent = con.createStatement();
+            sent.executeUpdate(marca);
+        } catch (Exception e) {
+            System.out.println("Error en el UPDATE");
+        }
+    }
 }
 
