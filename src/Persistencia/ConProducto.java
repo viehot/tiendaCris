@@ -7,12 +7,15 @@ package Persistencia;
 
 import Entity.Producto;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author piriv
  */
 public class ConProducto extends Conexion {
+    
+    Scanner read = new Scanner(System.in).useDelimiter("\n");
 
     public ArrayList<Producto> ListarProducto() {
         try {
@@ -43,5 +46,43 @@ public class ConProducto extends Conexion {
     
     public void viewProducto(ArrayList<Producto> p){
         p.forEach(System.out::println);
+        desconexion();
     }
+    
+    public String crearProducto (){
+        System.out.println("Crear producto");
+        String nombre = wrNombre();
+        int stock = wrStock();
+        double precio = wrPrecio();
+        String descripcion = wrDescripcion();
+        String sql = "INSERT INTO producto VALUES (DEFAULT,'"+nombre+"',"+stock+","+precio+",'"+descripcion+"', 2 )";
+        
+        return sql;
+    }
+    
+    public String wrNombre(){
+        System.out.println("Ingresar nombre");
+        return read.next();
+    }
+    
+    public int wrStock() {
+        System.out.println("Ingresar stock");
+        return read.nextInt();
+    }
+    
+    public double wrPrecio(){
+        System.out.println("Ingresar precio");
+        return read.nextDouble();
+    }
+    
+    public String wrDescripcion(){
+        System.out.println("Ingresar descripcion");
+        return read.next();
+    }
+    
+    public void newProd (String sql){
+        eliminarModificarCrear(sql);
+        desconexion();
+    }
+    
 }

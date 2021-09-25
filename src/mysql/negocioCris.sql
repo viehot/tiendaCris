@@ -3,20 +3,20 @@ CREATE DATABASE negocioCris CHARACTER SET utf8mb4;
 USE negocioCris;
 
 CREATE TABLE marca (
-    id_mar INTEGER UNSIGNED AUTO_INCREMENT,
+    id_mar INTEGER NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     PRIMARY KEY(id_mar)
 );
 
 CREATE TABLE producto (
-    id INTEGER UNSIGNED AUTO_INCREMENT,
+    id INTEGER NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     stock INT(100) NOT NULL,
     precio DOUBLE(100,00) NOT NULL,
     descripcion VARCHAR(255) NULL,
-    id_marca INT NOT NULL,
+    id_mar INT NOT NULL,
     PRIMARY KEY(id),
-    FOREIGN KEY (id) REFERENCES marca(id_mar)
+    FOREIGN KEY (id_mar) REFERENCES marca(id_mar)
 );
 
 

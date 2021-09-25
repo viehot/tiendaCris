@@ -1,7 +1,7 @@
 package main;
 
 import Persistencia.ConProducto;
-import Persistencia.Conexion;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +21,8 @@ public class tiendacris {
     public static void main(String[] args) {
         ConProducto p = new ConProducto();
         
+        p.viewProducto(p.ListarProducto());
+        p.newProd(p.crearProducto());
         p.viewProducto(p.ListarProducto());
     }
     
