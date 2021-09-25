@@ -21,6 +21,7 @@ public class tiendacris {
         Conexion con = new Conexion();
         
         con.coneccion();
+        con.desconexion();
     }
     
 }

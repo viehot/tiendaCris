@@ -8,6 +8,7 @@ package Persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -28,11 +29,29 @@ public class Conexion {
             String urlBaseDeDatos = "jdbc:mysql://localhost:3306/" + database + "?useSSL=false";
             con = DriverManager.getConnection(urlBaseDeDatos, user, password);
             System.out.println("Conectado");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("No conectado");
             e.printStackTrace();
         }
         
+    }
+    
+    public void desconexion(){
+        try {
+            if (res != null) {
+                res.close();
+            }
+            if (sent != null){
+                sent.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+            System.out.println("Desconectado");
+        } catch (Exception e) {
+            System.err.println("Error de desconexion");
+            e.printStackTrace();
+        }
     }
 }
 
