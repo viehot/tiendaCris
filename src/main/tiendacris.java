@@ -21,10 +21,12 @@ public class tiendacris {
     public static void main(String[] args) {
         ConProducto p = new ConProducto();
         
+//        p.viewProducto(p.ListarProducto());
+//        p.newProd(p.crearProducto());
+//        p.viewProducto(p.ListarProducto());
+//        p.elimProd(p.searchProducto(p.searchPorNombre(p.wrNombre())));
         p.viewProducto(p.ListarProducto());
-        p.newProd(p.crearProducto());
-        p.viewProducto(p.ListarProducto());
-        p.elimProd(p.searchProducto(p.searchPorNombre(p.wrNombre())));
+        p.changePro(p.searchProducto(p.searchPorNombre(p.wrNombre())), p.wrPrecio());
         p.viewProducto(p.ListarProducto());
     }
     

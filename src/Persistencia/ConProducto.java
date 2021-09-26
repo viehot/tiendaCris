@@ -103,7 +103,7 @@ public class ConProducto extends Conexion {
     }
 
     public String searchPorNombre(String nombre) {
-        String sql = "SELECT id FROM producto WHERE nombre ='" + nombre + "'";
+        String sql = "SELECT * FROM producto WHERE nombre ='" + nombre + "'";
         return sql;
     }
 
@@ -124,5 +124,17 @@ public class ConProducto extends Conexion {
             return 0;
         }
 
+    }
+    
+    public void changePro(int id, double precio){
+        try {
+            String sql = "UPDATE producto SET precio = "+precio+" WHERE id = "+id;
+            eliminarModificarCrear(sql);
+            desconexion();
+        } catch (Exception e) {
+            System.out.println("Error. No se pudo cambiar");
+            e.printStackTrace();
+        }
+        
     }
 }
